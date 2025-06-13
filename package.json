@@ -1,0 +1,92 @@
+{
+  "name": "code-rhythm-live",
+  "displayName": "Code Rhythm",
+  "description": "Convert code structure into musical patterns using the Web Audio API",
+  "version": "1.0.1",
+  "publisher": "maxs-lab-of-things",
+  "author": {
+    "name": "Max Marquardt",
+    "url": "https://mlot.ai"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": ["Other", "Visualization"],
+  "keywords": ["audio", "music", "accessibility", "productivity", "code visualization"],
+  "icon": "icon.png",
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeRhythm.togglePlayback",
+        "title": "Code Rhythm: Toggle Playback"
+      },
+      {
+        "command": "codeRhythm.openPanel",
+        "title": "Code Rhythm: Open Control Panel"
+      },
+      {
+        "command": "codeRhythm.changeMode",
+        "title": "Code Rhythm: Change Mode"
+      }
+    ],
+    "configuration": {
+      "title": "Code Rhythm",
+      "properties": {
+        "codeRhythm.tempo": {
+          "type": "number",
+          "default": 120,
+          "minimum": 60,
+          "maximum": 180,
+          "description": "Playback tempo in BPM"
+        },
+        "codeRhythm.genre": {
+          "type": "string",
+          "default": "Electronic",
+          "enum": ["Electronic", "Jazz", "Ambient", "Classical"],
+          "description": "Musical genre preset"
+        },
+        "codeRhythm.volume": {
+          "type": "number",
+          "default": 0.7,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Master volume"
+        },
+        "codeRhythm.enableVisualizer": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable waveform visualizer"
+        }
+      }
+    },
+    "views": {
+      "explorer": [
+        {
+          "type": "webview",
+          "id": "codeRhythm.controlPanel",
+          "name": "Code Rhythm",
+          "icon": "$(music)",
+          "contextualTitle": "Code Rhythm Controls"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.3"
+  }
+}

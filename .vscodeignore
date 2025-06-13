@@ -1,0 +1,32 @@
+.vscode/**
+.vscode-test/**
+src/**
+.gitignore
+.yarnrc
+vsc-extension-quickstart.md
+**/tsconfig.json
+**/.eslintrc.json
+**/*.map
+**/*.ts
+node_modules/**/*.md
+node_modules/**/LICENSE*
+node_modules/**/test/**
+
+# AI and development files
+.claude/
+*.claude
+.cursor/
+.aider*
+.ai*
+todo.txt
+
+# Documentation and development files
+CONTRIBUTING.md
+docs/**
+images/**
+*.gif
+*.jpg
+*.jpeg
+
+# But keep the extension icon
+!icon.png
