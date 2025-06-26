@@ -2,12 +2,14 @@
   "name": "code-rhythm-live",
   "displayName": "Code Rhythm",
   "description": "Convert code structure into musical patterns using the Web Audio API",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "publisher": "maxs-lab-of-things",
   "author": {
     "name": "Max Marquardt",
     "url": "https://mlot.ai"
   },
+  "license": "MIT",
+  "homepage": "https://mlot.ai",
   "engines": {
     "vscode": "^1.74.0"
   },

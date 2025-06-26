@@ -129,20 +129,10 @@ Choose from different musical styles:
 
 Code Rhythm runs entirely locally. No code or audio is sent to external servers.
 
-## Contributing
+## Author
 
-Contributions are welcome! Please reach out to discuss any changes or improvements.
+Max Marquardt | [mlot.ai](https://mlot.ai)
 
 ## License
 
-MIT License - see LICENSE file for details.
-
-## Acknowledgments
-
-- Inspired by the concept of code sonification
-- Built with the Web Audio API
-- Thanks to the VS Code extension community
-
----
-
-Made with ♪ by Max Marquardt
+MIT
