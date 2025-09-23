@@ -1,9 +1,11 @@
 # Code Rhythm 🎵
 
+![Version](https://img.shields.io/visual-studio-marketplace/v/maxs-lab-of-things.code-rhythm-live)
+![MLoT](https://img.shields.io/badge/MLoT-ai-blue)
+
 Transform your code into music! Code Rhythm is a VS Code extension that converts code structure into musical patterns using the Web Audio API, making programming more accessible and enjoyable.
 
-<!-- Demo GIF will be added after publishing -->
-**Demo coming soon!**
+![Demo](https://raw.githubusercontent.com/incrediblecrab/Packages-and-Extensions-Media/main/code-rhythm.gif)
 
 ## Features
 
@@ -129,9 +131,16 @@ Choose from different musical styles:
 
 Code Rhythm runs entirely locally. No code or audio is sent to external servers.
 
-## Author
+## Resources
 
-Max Marquardt | [mlot.ai](https://mlot.ai)
+- 📺 [Watch Demo Video](https://youtu.be/fxyoaWU6CTA)
+- 🌐 [Visit MLoT Page](https://mlot.ai/code-rhythm/)
+- 🔒 [Privacy Policy](https://mlot.ai/privacy)
+
+## Publisher
+
+**Max's Lab of Things**
+Visit [mlot.ai](https://mlot.ai/)
 
 ## License
 
