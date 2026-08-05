@@ -35,3 +35,14 @@ desktop.ini
 .env
 .env.local
 .env.*.local
+
+# --- project-specific (auto-added 2026-08-04) ---
+node_modules/
+pnpm-debug.log*
+*.tsbuildinfo
+.npm/
+out/
+dist/
+build/
+.cache/
+coverage/
