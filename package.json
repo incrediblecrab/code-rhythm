@@ -2,7 +2,7 @@
   "name": "code-rhythm-live",
   "displayName": "Code Rhythm",
   "description": "Convert code structure into musical patterns using the Web Audio API",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "publisher": "maxs-lab-of-things",
   "author": {
     "name": "Max Marquardt",

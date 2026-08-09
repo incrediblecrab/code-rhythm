@@ -9,19 +9,19 @@ Transform your code into music! Code Rhythm is a VS Code extension that converts
 
 ## Features
 
-### 🎼 Real-time Code Sonification
+### Real-time Code Sonification
 - **Automatic Analysis**: Converts functions, loops, variables, and conditionals into distinct sounds
 - **Live Updates**: Music adapts as you type
 - **Multi-language Support**: Works with any language VS Code supports
 
-### 🎹 Musical Genres
+### Musical Genres
 Choose from different musical styles:
 - **Electronic**: Punchy drums and synthesizers
 - **Jazz**: Swung rhythms and blue notes
 - **Ambient**: Atmospheric pads and textures  
 - **Classical**: Orchestral arrangements
 
-### 🎧 Advanced Modes
+### Advanced Modes
 
 #### Navigation Mode
 - Cursor movements trigger contextual sounds
@@ -43,7 +43,7 @@ Choose from different musical styles:
 - Typing rhythm metronome
 - Pomodoro timer with musical cues
 
-### 👥 Team Features
+### Team Features
 - **Author Signatures**: Unique rhythm patterns per developer
 - **Musical Handoffs**: Smooth transitions between coding styles
 - **Git Integration**: Analyze commit patterns
