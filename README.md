@@ -5,7 +5,7 @@
 
 Transform your code into music! Code Rhythm is a VS Code extension that converts code structure into musical patterns using the Web Audio API, making programming more accessible and enjoyable.
 
-![Demo](https://raw.githubusercontent.com/incrediblecrab/Packages-and-Extensions-Media/main/gifs/code-rhythm.gif)
+![Demo](https://raw.githubusercontent.com/incrediblecrab/mlot-developer-media/main/gifs/code-rhythm.gif)
 
 ## Features
 
