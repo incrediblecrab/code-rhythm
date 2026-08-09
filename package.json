@@ -106,5 +106,12 @@
     "@typescript-eslint/parser": "^5.45.0",
     "eslint": "^8.28.0",
     "typescript": "^4.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/incrediblecrab/code-rhythm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/incrediblecrab/code-rhythm/issues"
   }
 }
