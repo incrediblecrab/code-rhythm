@@ -1,85 +1,57 @@
-# Code Rhythm 🎵
+# code-rhythm
 
-![Version](https://img.shields.io/visual-studio-marketplace/v/maxs-lab-of-things.code-rhythm-live)
-![MLoT](https://img.shields.io/badge/MLoT-ai-blue)
+![Version](https://img.shields.io/visual-studio-marketplace/v/maxs-lab-of-things.code-rhythm-live) ![MLoT](https://img.shields.io/badge/MLoT-ai-blue)
 
-Transform your code into music! Code Rhythm is a VS Code extension that converts code structure into musical patterns using the Web Audio API, making programming more accessible and enjoyable.
+Code Rhythm is a VS Code extension that turns the active editor's code structure into synthesized audio. It is published on the VS Code Marketplace as [`maxs-lab-of-things.code-rhythm-live`](https://marketplace.visualstudio.com/items?itemName=maxs-lab-of-things.code-rhythm-live); the Marketplace version is 1.5.1, matching this repository.
 
 ![Demo](https://raw.githubusercontent.com/incrediblecrab/mlot-developer-media/main/gifs/code-rhythm.gif)
 
-## Features
+**Objective:** make code structure audible through local analysis, playback controls and a VS Code side panel.
 
-### Real-time Code Sonification
-- **Automatic Analysis**: Converts functions, loops, variables, and conditionals into distinct sounds
-- **Live Updates**: Music adapts as you type
-- **Multi-language Support**: Works with any language VS Code supports
+**Inputs:** VS Code 1.74.0 or newer, an open text editor and the Web Audio API inside the extension webview. Optional team-signature code reads local Git history when that feature is used by the extension code.
 
-### Musical Genres
-Choose from different musical styles:
-- **Electronic**: Punchy drums and synthesizers
-- **Jazz**: Swung rhythms and blue notes
-- **Ambient**: Atmospheric pads and textures  
-- **Classical**: Orchestral arrangements
+**Files:**
 
-### Advanced Modes
+- [`src/analysis/`](src/analysis/): document-symbol parsing, complexity metrics and pattern detection
+- [`src/audio/`](src/audio/): playback engine, sequencer and synthesizer
+- [`src/features/`](src/features/): code highlighting, focus mode and team-signature helpers
+- [`src/mapping/`](src/mapping/): conversion from code events to rhythm and sound events
+- [`src/modes/`](src/modes/): navigation, overview and diff mode logic
+- [`src/ui/`](src/ui/): status bar and Code Rhythm webview
+- [`src/extension.ts`](src/extension.ts): activation, command registration and editor-change listeners
+- [`package.json`](package.json): extension manifest, Marketplace metadata, commands, settings, view contribution and scripts
+- [`CHANGELOG.md`](CHANGELOG.md): release notes
+- [`tsconfig.json`](tsconfig.json): TypeScript compiler settings
 
-#### Navigation Mode
-- Cursor movements trigger contextual sounds
-- Jump detection with transition effects
-- Audio breadcrumbs for code exploration
+**Try it:** install with `ext install maxs-lab-of-things.code-rhythm-live`, open a code file, then run **Code Rhythm: Open Control Panel** and start playback from the Code Rhythm Explorer view.
 
-#### Overview Mode
-- Compress entire files into 30-second compositions
-- Identify musical sections (intro/verse/chorus)
-- Export as MIDI files
+## Usage
 
-#### Diff Mode
-- Stereo comparison of code changes
-- Added code in right channel, removed in left
-- Crossfade effects for modifications
+Code Rhythm contributes a **Code Rhythm** webview to the Explorer. Open the panel with **Code Rhythm: Open Control Panel**, initialize audio in the panel, choose tempo, volume and genre, then play the current document's generated sound pattern.
 
-#### Focus Mode
-- Binaural beats for concentration (alpha/theta waves)
-- Typing rhythm metronome
-- Pomodoro timer with musical cues
+**Code Rhythm: Toggle Playback** analyzes the active editor with VS Code document symbols, maps the result to sound events and starts or stops playback. If the webview has not initialized audio yet, the command prompts you to open the control panel.
 
-### Team Features
-- **Author Signatures**: Unique rhythm patterns per developer
-- **Musical Handoffs**: Smooth transitions between coding styles
-- **Git Integration**: Analyze commit patterns
+**Code Rhythm: Change Mode** offers Navigation, Overview, Diff and Focus in a quick pick. The selected mode is passed to the audio engine.
 
-## Installation
+## Commands and views
 
-1. Open VS Code
-2. Press `Ctrl+P` / `Cmd+P`
-3. Type `ext install code-rhythm`
-4. Press Enter
+| Contribution | Identifier | What it does |
+| --- | --- | --- |
+| Command | `codeRhythm.togglePlayback` | toggles playback for the active editor |
+| Command | `codeRhythm.openPanel` | focuses the Code Rhythm control panel |
+| Command | `codeRhythm.changeMode` | lets the user choose Navigation, Overview, Diff or Focus mode |
+| Explorer webview | `codeRhythm.controlPanel` | provides playback controls, tempo, volume, genre selection and visualizer canvas |
 
-## Quick Start
+## Settings
 
-1. Open any code file
-2. Click the "▶ Code Rhythm" button in the status bar
-3. Adjust tempo and volume in the control panel
-4. Start coding and listen!
+| Setting | Default | What it controls |
+| --- | --- | --- |
+| `codeRhythm.tempo` | `120` | playback tempo in beats per minute |
+| `codeRhythm.genre` | `"Electronic"` | musical genre preset; the UI offers Electronic, Jazz, Ambient and Classical |
+| `codeRhythm.volume` | `0.7` | master volume from 0 to 1 |
+| `codeRhythm.enableVisualizer` | `true` | whether the waveform visualizer is enabled |
 
-### Keyboard Shortcuts
-
-- `Ctrl+Alt+P` / `Cmd+Alt+P`: Toggle playback
-- `Ctrl+Alt+M` / `Cmd+Alt+M`: Change mode
-- `Ctrl+Alt+G` / `Cmd+Alt+G`: Switch genre
-
-## Sound Mappings
-
-| Code Element | Instrument | Musical Role |
-|--------------|------------|--------------|
-| Functions | Kick Drum | Downbeats, structure |
-| Loops | Hi-hat | Rolling patterns |
-| Conditionals | Snare | Accents, decisions |
-| Variables | Synthesizer | Melody |
-| Classes | Chord Pads | Harmonic foundation |
-| Comments | Rest | Silence, breathing space |
-
-## Configuration
+Example `settings.json`:
 
 ```json
 {
@@ -90,58 +62,35 @@ Choose from different musical styles:
 }
 ```
 
-## Use Cases
+## Sound mappings
 
-### Accessibility
-- Navigate code by sound for visually impaired developers
-- Audio debugging through pattern recognition
-- Multi-sensory learning experience
+| Code element | Instrument | Musical role |
+| --- | --- | --- |
+| Functions | Kick | downbeats and structural accents |
+| Loops | Hihat | repeated pulses based on loop depth and duration |
+| Conditionals | Snare | decision accents, with extra hits for additional conditions |
+| Variables | Synth | pitched notes derived from the variable name and scope |
+| Classes | Synth | three low notes from the current scale |
+| Comments | Rest | silence |
 
-### Productivity
-- Maintain coding rhythm and flow
-- Audio indicators for code complexity
-- Binaural beats for deep focus
+## How it works
 
-### Education
-- Teach code structure through music
-- Make programming concepts more tangible
-- Gamify the learning experience
+The extension uses VS Code document symbols and text analysis to produce code events, maps those events into rhythmic sound events and plays them through a webview-backed audio engine. While playback is active, changing the active editor or editing the active document regenerates the sound events.
 
-### Team Collaboration
-- Identify coding patterns across team members
-- Audio diffs for code reviews
-- Musical pair programming
+The repository contains additional mode and feature modules for navigation cues, overview generation, diff processing, focus mode, code highlighting and team signatures. The README describes only the contributed commands, settings and view exposed by the current manifest.
 
-## How It Works
+## Development
 
-1. **AST Parsing**: Analyzes code structure using VS Code's APIs
-2. **Pattern Detection**: Identifies repetitions and complexity
-3. **Sound Mapping**: Converts code elements to musical events
-4. **Real-time Synthesis**: Generates audio using Web Audio API
-5. **Adaptive Playback**: Adjusts to your coding style
+The repository includes the scripts `npm run compile`, `npm run watch`, `npm run lint`, `npm run test` and `npm run vscode:prepublish`. The extension entry point is configured as `./out/extension.js`.
 
-## Performance
+## Links
 
-- Minimal CPU usage (<5%)
-- Smart caching for large files
-- Voice stealing for polyphony limits
-- Efficient AST analysis
-
-## Privacy
-
-Code Rhythm runs entirely locally. No code or audio is sent to external servers.
-
-## Resources
-
-- 📺 [Watch Demo Video](https://youtu.be/fxyoaWU6CTA)
-- 🌐 [Visit MLoT Page](https://mlot.ai/code-rhythm/)
-- 🔒 [Privacy Policy](https://mlot.ai/privacy)
-
-## Publisher
-
-**Max's Lab of Things**
-Visit [mlot.ai](https://mlot.ai/)
+- [Marketplace listing](https://marketplace.visualstudio.com/items?itemName=maxs-lab-of-things.code-rhythm-live)
+- [Demo video](https://youtu.be/fxyoaWU6CTA)
+- [MLoT product page](https://mlot.ai/code-rhythm/)
+- [Privacy policy](https://mlot.ai/privacy)
+- Publisher: [Max's Lab of Things](https://mlot.ai/)
 
 ## License
 
-MIT
+MIT. See [`LICENSE`](LICENSE).
