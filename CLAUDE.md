@@ -1,46 +1,26 @@
-# Code Rhythm - VS Code Extension
+# CLAUDE.md
 
-## Project Overview
-A VS Code extension that converts code structure into musical patterns using the Web Audio API. Features real-time sonification of code with different modes (navigation, diff, overview), team signatures, and focus mode with code highlighting.
+This file provides guidance to Claude Code (claude.ai/code) and GitHub Copilot CLI when working in this repository.
 
-## Technology Stack
-- TypeScript
-- VS Code Extension API
-- Web Audio API for sound synthesis
-- AST parsing for code analysis
-
-## Architecture
-- `src/extension.ts` - Main extension entry point
-- `src/analysis/` - Code analysis (AST parsing, complexity analysis, pattern detection)
-- `src/audio/` - Audio engine, sequencer, and synthesizer
-- `src/mapping/` - Rhythm generation and sound mapping
-- `src/modes/` - Different playback modes (diff, navigation, overview)
-- `src/features/` - Code highlighting, focus mode, team signatures
-- `src/ui/` - Status bar and webview components
-
-## Key Features
-- Real-time code-to-music conversion
-- Multiple musical genres (Electronic, Jazz, Ambient, Classical)
-- Configurable tempo (60-180 BPM) and volume
-- Visual waveform analyzer
-- Team signature sounds
-- Focus mode with code highlighting
-
-## Development Commands
-- `npm run compile` - Compile TypeScript
-- `npm run watch` - Watch for changes and recompile
-- `npm run lint` - Run ESLint
-- `npm run test` - Run tests
-- `npm run vscode:prepublish` - Prepare for publishing
-
-## Configuration
-The extension provides several configuration options:
-- `codeRhythm.tempo` - Playback tempo (60-180 BPM)
-- `codeRhythm.genre` - Musical genre preset
-- `codeRhythm.volume` - Master volume (0-1)
-- `codeRhythm.enableVisualizer` - Enable/disable waveform visualizer
+Code Rhythm is a VS Code extension that turns the active editor's code structure into synthesized audio played in a webview. The folder and repository are `code-rhythm`, but the Marketplace extension is `maxs-lab-of-things.code-rhythm-live`. The repository is public.
 
 ## Commands
-- `codeRhythm.togglePlayback` - Toggle audio playback
-- `codeRhythm.openPanel` - Open control panel
-- `codeRhythm.changeMode` - Switch between playback modes
+
+```bash
+npm run compile      # tsc -p ./ -> out/
+npm run watch
+npm run lint         # eslint src --ext ts
+npx vsce package     # read the printed file list before publishing
+```
+
+Run the extension with F5 from VS Code (`.vscode/launch.json`). `npm test` points at `out/test/runTest.js`, but there is no `src/test/`, so it compiles, lints and then fails; there are no tests.
+
+## Structure
+
+`src/extension.ts` activates on startup and wires five objects: `ASTParser` (`analysis/astParser.ts`) turns the document into structure, `SoundMapper` (`mapping/soundMapper.ts`) maps it to sound events, `AudioEngine` (`audio/audioEngine.ts`) holds playback state, `WebviewProvider` (`ui/webviewProvider.ts`) renders the explorer panel where the Web Audio API actually makes sound, and `CodeHighlighter` plus `StatusBar` give editor feedback. The three commands (`codeRhythm.togglePlayback`, `codeRhythm.openPanel`, `codeRhythm.changeMode`) and four settings (`codeRhythm.tempo`, `genre`, `volume`, `enableVisualizer`) are declared in `package.json`.
+
+Much of `src/` is written but not wired in. Nothing constructs the classes in `src/modes/` (navigation, overview, diff), `features/focusMode.ts`, `features/teamSignatures.ts`, `mapping/rhythmGenerator.ts`, `audio/sequencer.ts`, `audio/synthesizer.ts`, `analysis/complexityAnalyzer.ts` or `analysis/patternDetector.ts` outside those folders, and `codeRhythm.changeMode` only stores the chosen name with `AudioEngine.setMode`. Check whether a module is reachable from `extension.ts` before assuming a feature works.
+
+## Releasing
+
+`.vscodeignore` is the only control over what ships in the `.vsix`; `.gitignore` is ignored by `vsce`. The managed block in it is rewritten by a standardizing script, so add project-specific exclusions outside that block. The README states the Marketplace version, so bump it with `package.json` and `CHANGELOG.md`. The publishing procedure is in `../README.md`.
