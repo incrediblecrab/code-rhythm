@@ -99,6 +99,9 @@
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
   },
+  "vsce": {
+    "dependencies": false
+  },
   "devDependencies": {
     "@types/vscode": "^1.74.0",
     "@types/node": "16.x",
